@@ -37,6 +37,8 @@ public class FullNodeHttpApiService implements Service {
   @Autowired
   private GetDelegationServlet getDelegationServlet;
   @Autowired
+  private GetDynamicPropertyServlet getDynamicPropertyServlet;
+  @Autowired
   private GetAccountServlet getAccountServlet;
   @Autowired
   private TransferServlet transferServlet;
@@ -343,6 +345,7 @@ public class FullNodeHttpApiService implements Service {
       server.setHandler(context);
 
       context.addServlet(new ServletHolder(getDelegationServlet), "/db/getdelegation");
+      context.addServlet(new ServletHolder(getDynamicPropertyServlet), "/db/getdynamic");
       context.addServlet(new ServletHolder(getAccountServlet), "/wallet/getaccount");
       context.addServlet(new ServletHolder(transferServlet), "/wallet/createtransaction");
       context.addServlet(new ServletHolder(broadcastServlet), "/wallet/broadcasttransaction");
